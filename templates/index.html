@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kramer 3×3 | Calculadora paso a paso</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="orb orb-one"></div><div class="orb orb-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">Δ</span><span>KRAMER<span class="brand-light">LAB</span><small>ÁLGEBRA · SISTEMAS 3×3</small></span></a>
+    <span class="top-pill"><span class="status-dot"></span> Calculadora educativa</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow"><span>01</span> MÉTODO DE CRAMER</div>
+      <h1>Resuelve sistemas.<br><span>Comprende cada paso.</span></h1>
+      <p>Calcula sistemas de tres ecuaciones lineales y observa el procedimiento completo: matrices, determinantes por regla de Sarrus y sustitución en las fórmulas de Cramer.</p>
+      <div class="hero-chips"><span>✦ Procedimiento detallado</span><span>▦ Matrices 3×3</span><span>∑ Regla de Sarrus</span></div>
+    </section>
+
+    <section class="workspace">
+      <div class="section-head">
+        <div><div class="eyebrow"><span>02</span> INGRESA LOS COEFICIENTES</div><h2>Tu sistema de ecuaciones</h2></div>
+        <button id="exampleBtn" class="btn-ghost" type="button">↻ Cargar ejemplo</button>
+      </div>
+      <div class="equations-card">
+        <div class="equation-label">SISTEMA LINEAL</div>
+        <div class="equation-row"><span class="eq-index">E₁</span><input aria-label="coeficiente x ecuación 1" id="a11" value="1" type="number" step="any"><b>x</b><span class="op">+</span><input aria-label="coeficiente y ecuación 1" id="a12" value="2" type="number" step="any"><b>y</b><span class="op">−</span><input aria-label="coeficiente z ecuación 1" id="a13" value="-1" type="number" step="any"><b>z</b><span class="op">=</span><input aria-label="resultado ecuación 1" id="b1" value="2" type="number" step="any"></div>
+        <div class="equation-row"><span class="eq-index">E₂</span><input aria-label="coeficiente x ecuación 2" id="a21" value="2" type="number" step="any"><b>x</b><span class="op">−</span><input aria-label="coeficiente y ecuación 2" id="a22" value="-1" type="number" step="any"><b>y</b><span class="op">+</span><input aria-label="coeficiente z ecuación 2" id="a23" value="1" type="number" step="any"><b>z</b><span class="op">=</span><input aria-label="resultado ecuación 2" id="b2" value="3" type="number" step="any"></div>
+        <div class="equation-row"><span class="eq-index">E₃</span><input aria-label="coeficiente x ecuación 3" id="a31" value="2" type="number" step="any"><b>x</b><span class="op">+</span><input aria-label="coeficiente y ecuación 3" id="a32" value="2" type="number" step="any"><b>y</b><span class="op">−</span><input aria-label="coeficiente z ecuación 3" id="a33" value="-1" type="number" step="any"><b>z</b><span class="op">=</span><input aria-label="resultado ecuación 3" id="b3" value="3" type="number" step="any"></div>
+        <div class="input-note"><span>ⓘ</span> Puedes usar números enteros o decimales, positivos o negativos.</div>
+      </div>
+      <button id="solveBtn" class="btn-primary" type="button"><span>Calcular y mostrar procedimiento</span><span class="btn-arrow">→</span></button>
+      <p id="errorMsg" class="error-msg" role="alert"></p>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="section-head result-heading"><div><div class="eyebrow"><span>03</span> DESARROLLO</div><h2>Procedimiento paso a paso</h2></div><span class="method-tag">REGLA DE CRAMER</span></div>
+      <div class="step-card">
+        <div class="step-title"><span class="step-number">1</span><div><h3>Construir la matriz de coeficientes</h3><p>Los coeficientes de x, y, z forman la matriz A; los resultados forman el vector B.</p></div></div>
+        <div id="matrixA" class="matrix-area"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-title"><span class="step-number">2</span><div><h3>Calcular el determinante principal Δ</h3><p>Aplicamos la regla de Sarrus: suma de diagonales descendentes menos suma de diagonales ascendentes.</p></div></div>
+        <div id="detAsteps"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-title"><span class="step-number">3</span><div><h3>Formar las matrices Δx, Δy y Δz</h3><p>En cada matriz se reemplaza una columna de A por el vector de resultados B.</p></div></div>
+        <div id="replacementMatrices" class="replacement-grid"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-title"><span class="step-number">4</span><div><h3>Calcular los determinantes sustitutos</h3><p>Se vuelve a aplicar Sarrus para obtener Δx, Δy y Δz.</p></div></div>
+        <div id="subDetSteps" class="subdet-grid"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-title"><span class="step-number">5</span><div><h3>Aplicar las fórmulas de Cramer</h3><p>Dividimos cada determinante sustituto entre el determinante principal.</p></div></div>
+        <div id="formulas" class="formula-grid"></div>
+        <div id="finalResult"></div>
+      </div>
+      <div class="footnote">Consejo: si Δ = 0, la regla de Cramer no determina una solución única. Revisa el sistema o utiliza otro método para estudiar sus soluciones.</div>
+    </section>
+    <footer><span class="footer-mark">Δ</span><span>KRAMERLAB</span><span class="footer-muted">Una herramienta para aprender matemáticas.</span></footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
