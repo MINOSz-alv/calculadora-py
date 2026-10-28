@@ -1,6 +1,6 @@
-# KramerLab — Sistemas de ecuaciones 3×3
+# KramerLab — Sistemas de ecuaciones lineales
 
-Aplicación web educativa en Python + Flask para resolver sistemas de tres ecuaciones lineales con la regla de Cramer.
+Aplicación web educativa en Python + Flask para resolver sistemas de dos o tres ecuaciones lineales con la regla de Cramer.
 
 ## Requisitos
 - Python 3.9 o superior
@@ -23,11 +23,12 @@ En Garuda/Linux, si el comando `python` no funciona, prueba `python3`.
 
 ## Qué incluye
 - Diseño oscuro con detalles en turquesa y azul, adaptable a móvil y computadora.
-- Campos editables para los 12 valores del sistema.
-- Ejemplo precargado basado en el estilo de los apuntes.
+- Selector para resolver sistemas 2×2 o 3×3.
+- Campos editables que se adaptan al número de incógnitas elegido.
+- Ejemplos de sistemas 2×2 y 3×3.
 - Matriz de coeficientes A y vector B.
-- Determinantes calculados con la regla de Sarrus, mostrando productos de diagonales descendentes y ascendentes.
-- Matrices Δx, Δy y Δz con la columna reemplazada resaltada.
+- Determinantes 2×2 y regla de Sarrus para matrices 3×3, con el procedimiento mostrado.
+- Matrices sustitutas y fórmulas de Cramer para cada incógnita.
 - Fórmulas de Cramer y resultado final.
 - Aviso cuando Δ = 0 y no existe una solución única por Cramer.
 
